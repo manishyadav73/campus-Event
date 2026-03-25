@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Campus Event Portal</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: linear-gradient(to right, #141e30, #243b55);
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 50px;
+            background: rgba(0,0,0,0.3);
+        }
+
+        nav h2 {
+            margin: 0;
+        }
+
+        nav button {
+            padding: 8px 15px;
+            background: #00c6ff;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .hero button {
+            padding: 12px 25px;
+            font-size: 16px;
+            background: #00c6ff;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .hero button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <h2>🎓 Campus Portal</h2>
+    <button onclick="goToLogin()">Login</button>
+</nav>
+
+<section class="hero">
+    <h1>Welcome to Campus Event Portal</h1>
+    <p>Manage and explore all your campus events easily</p>
+    <button onclick="goToLogin()">Get Started</button>
+</section>
+
+<script>
+function goToLogin() {
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

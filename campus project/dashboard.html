@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Campus Event Portal</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">🎓 Campus Portal</div>
+    <ul>
+        <li onclick="scrollToSection('add')">Add Event</li>
+        <li onclick="scrollToSection('events')">Events</li>
+    </ul>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero">
+
+    <div class="hero-content">
+        <h1>Welcome to Campus Event Portal</h1>
+        <p>Manage and explore campus events effortlessly</p>
+        <button onclick="scrollToSection('add')">Get Started</button>
+    </div>
+
+    <div class="hero-image">
+        <img src="images/hero.png" alt="Campus">
+    </div>
+
+</section>
+
+
+<!-- ADD EVENT SECTION -->
+<section class="section" id="add">
+
+    <div class="add-container">
+
+        <div class="add-image">
+            <img src="images/add-event.png" alt="Add Event">
+        </div>
+
+        <div class="add-form">
+            <h2>Add New Event</h2>
+
+            <div class="form-box">
+                <input type="text" id="title" placeholder="Title">
+                <input type="text" id="description" placeholder="Description">
+                <input type="text" id="location" placeholder="Location">
+                <input type="text" id="imageUrl" placeholder="Image URL">
+                <input type="datetime-local" id="eventDate">
+                <button onclick="addEvent()">Add Event</button>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EVENTS SECTION -->
+<section class="section" id="events">
+<h2>All Events</h2>
+<div class="grid" id="eventList"></div>
+</section>
+
+<footer>
+© 2026 Campus Event Portal | Built with Spring Boot & Java
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
