@@ -7,7 +7,6 @@
         body {
             margin: 0;
             font-family: Arial;
-            background: linear-gradient(to right, #141e30, #243b55);
             color: white;
         }
 
@@ -15,7 +14,10 @@
             display: flex;
             justify-content: space-between;
             padding: 20px 50px;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.5);
+            position: absolute;
+            width: 100%;
+            z-index: 2;
         }
 
         nav h2 {
@@ -31,12 +33,27 @@
         }
 
         .hero {
-            height: 90vh;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.6);
+            z-index: 1;
+        }
+
+        .content {
+            z-index: 2;
         }
 
         .hero h1 {
@@ -71,16 +88,44 @@
     <button onclick="goToLogin()">Login</button>
 </nav>
 
-<section class="hero">
-    <h1>Welcome to Campus Event Portal</h1>
-    <p>Manage and explore all your campus events easily</p>
-    <button onclick="goToLogin()">Get Started</button>
+<div class="overlay"></div>
+
+<section class="hero" id="hero">
+    <div class="content">
+        <h1>Welcome to Campus Event Portal</h1>
+        <p>Explore college fests, cultural events, tech events and more</p>
+        <button onclick="goToLogin()">Get Started</button>
+    </div>
 </section>
 
 <script>
 function goToLogin() {
     window.location.href = "login.html";
 }
+
+window.onload = function () {
+
+    const images = [
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
+      "https://images.unsplash.com/photo-1511578314322-379afb476865",
+      "https://images.unsplash.com/photo-1506157786151-b8491531f063",
+      "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b",
+      "https://images.unsplash.com/photo-1505373877841-8d25f7d46678"
+    ];
+
+    let index = 0;
+
+    function changeBackground() {
+        const hero = document.getElementById("hero");
+        if (!hero) return;
+
+        hero.style.backgroundImage = `url('${images[index]}')`;
+        index = (index + 1) % images.length;
+    }
+
+    changeBackground(); // first load
+    setInterval(changeBackground, 3000);
+};
 </script>
 
 </body>
