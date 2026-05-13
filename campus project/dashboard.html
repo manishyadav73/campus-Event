@@ -16,8 +16,10 @@
     </ul>
 </nav>
 
-<!-- HERO SECTION -->
-<section class="hero">
+<!-- 🔥 NEW HERO BANNER -->
+<section class="hero hero-banner">
+
+    <div class="hero-overlay"></div>
 
     <div class="hero-content">
         <h1>Welcome to Campus Event Portal</h1>
@@ -25,20 +27,15 @@
         <button onclick="scrollToSection('add')">Get Started</button>
     </div>
 
-    <div class="hero-image">
-        <img src="images/hero.png" alt="Campus">
-    </div>
-
 </section>
-
-
 <!-- ADD EVENT SECTION -->
 <section class="section" id="add">
 
     <div class="add-container">
 
         <div class="add-image">
-            <img src="images/add-event.png" alt="Add Event">
+            <!-- 🔥 PREMIUM IMAGE -->
+            <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786" alt="Add Event">
         </div>
 
         <div class="add-form">
@@ -48,8 +45,16 @@
                 <input type="text" id="title" placeholder="Title">
                 <input type="text" id="description" placeholder="Description">
                 <input type="text" id="location" placeholder="Location">
-                <input type="text" id="imageUrl" placeholder="Image URL">
+
+                <input type="text" id="imageUrl" placeholder="Image URL" oninput="previewImage()">
+
+                <div style="margin-top:10px;">
+                    <img id="preview" src="" 
+                         style="width:100%; max-height:200px; object-fit:cover; display:none; border-radius:10px;">
+                </div>
+
                 <input type="datetime-local" id="eventDate">
+
                 <button onclick="addEvent()">Add Event</button>
             </div>
         </div>
@@ -58,18 +63,54 @@
 
 </section>
 
-
-<!-- EVENTS SECTION -->
+<!-- EVENTS -->
 <section class="section" id="events">
 <h2>All Events</h2>
 <div class="grid" id="eventList"></div>
 </section>
 
 <footer>
-© 2026 Campus Event Portal | Built with Spring Boot & Java
+© 2026 Campus Event Portal | Built with Spring Boot & Java | Developed By Manish Yadav 👑
 </footer>
 
 <script src="js/script.js"></script>
+
+<script>
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+/* 🔥 HERO IMAGE SLIDER */
+const heroImages = [
+  "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
+  "https://images.unsplash.com/photo-1511578314322-379afb476865",
+  "https://images.unsplash.com/photo-1506157786151-b8491531f063",
+  "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b",
+  "https://images.unsplash.com/photo-1505373877841-8d25f7d46678"
+];
+
+let heroIndex = 0;
+
+function changeHeroImage() {
+    const img = document.getElementById("heroImg");
+    if (!img) return;
+
+    img.style.opacity = 0;
+
+    setTimeout(() => {
+        img.src = heroImages[heroIndex];
+        img.style.opacity = 1;
+        heroIndex = (heroIndex + 1) % heroImages.length;
+    }, 300);
+}
+
+window.addEventListener("load", () => {
+    changeHeroImage();
+    setInterval(changeHeroImage, 3000);
+});
+</script>
 
 </body>
 </html>
