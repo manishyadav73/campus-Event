@@ -7,14 +7,44 @@
         body {
             margin: 0;
             font-family: Arial;
-            background: linear-gradient(to right, #141e30, #243b55);
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow: hidden;
         }
 
+        /* 🔥 BACKGROUND CONTAINER */
+        .bg-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .bg.active {
+            opacity: 1;
+        }
+
+        /* 🔥 DARK OVERLAY */
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 0;
+        }
+
+        /* 🔥 LOGIN BOX */
         .login-box {
+            position: relative;
+            z-index: 1;
             background: rgba(255, 255, 255, 0.1);
             padding: 40px;
             border-radius: 15px;
@@ -23,10 +53,8 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
             color: white;
-        }
 
-        .login-box h2 {
-            margin-bottom: 20px;
+            animation: slideFade 1s ease;
         }
 
         input {
@@ -34,7 +62,6 @@
             padding: 10px;
             margin: 10px 0;
             border: none;
-            outline: none;
             border-radius: 5px;
         }
 
@@ -55,22 +82,47 @@
             background: #0072ff;
         }
 
-        .login-box:hover {
-            transform: scale(1.02);
-            transition: 0.3s;
+        /* CENTER */
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ANIMATION */
+        @keyframes slideFade {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
     </style>
 </head>
 
 <body>
 
-<div class="login-box">
-    <h2>🔐 Login</h2>
+<!-- 🔥 DOUBLE BACKGROUND -->
+<div class="bg-container">
+    <div class="bg active" id="bg1"></div>
+    <div class="bg" id="bg2"></div>
+</div>
 
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
+<div class="overlay"></div>
 
-    <button onclick="login()">Login</button>
+<div class="container">
+    <div class="login-box">
+        <h2>🔐 Login</h2>
+
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+
+        <button onclick="login()">Login</button>
+    </div>
 </div>
 
 <script>
@@ -84,6 +136,42 @@ function login() {
         alert("Invalid credentials ❌");
     }
 }
+
+/* 🔥 PERFECT SMOOTH SLIDER */
+const images = [
+  "https://images.unsplash.com/photo-1531058020387-3be344556be6",
+  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
+  "https://images.unsplash.com/photo-1509062522246-3755977927d7",
+  "https://images.unsplash.com/photo-1515168833906-d2a3b82b1d9f"
+];
+
+let index = 0;
+let current = 1;
+
+window.onload = function () {
+    const bg1 = document.getElementById("bg1");
+    const bg2 = document.getElementById("bg2");
+
+    // first image
+    bg1.style.backgroundImage = `url('${images[0]}')`;
+
+    setInterval(() => {
+        index = (index + 1) % images.length;
+
+        if (current === 1) {
+            bg2.style.backgroundImage = `url('${images[index]}')`;
+            bg2.classList.add("active");
+            bg1.classList.remove("active");
+            current = 2;
+        } else {
+            bg1.style.backgroundImage = `url('${images[index]}')`;
+            bg1.classList.add("active");
+            bg2.classList.remove("active");
+            current = 1;
+        }
+
+    }, 3000);
+};
 </script>
 
 </body>
